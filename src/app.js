@@ -1,32 +1,35 @@
-import "bootstrap";
-import "./style.css";
-
-import "./assets/img/rigo-baby.jpg";
-import "./assets/img/4geeks.ico";
-
-let who = ["The dog", "My grandma", "His turtle", "My bird"];
-let action = ["ate", "peed", "crushed", "broke"];
-let what = ["my homework", "the keys", "the car"];
-let when = [
-  "before the class",
-  "right on time",
-  "when I finished",
-  "during my lunch",
-  "while I was praying"
+const palos = ["♠", "♥", "♣", "♦"];
+const valores = [
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "10",
+  "J",
+  "Q",
+  "K",
+  "A"
 ];
 
-function generateExcuse() {
-  let randomWho = who[Math.floor(Math.random() * who.length)];
-  let randomAction = action[Math.floor(Math.random() * action.length)];
-  let randomWhat = what[Math.floor(Math.random() * what.length)];
-  let randomWhen = when[Math.floor(Math.random() * when.length)];
+function obtenerCartaAleatoria() {
+  const paloAleatorio = palos[Math.floor(Math.random() * palos.length)];
+  const valorAleatorio = valores[Math.floor(Math.random() * valores.length)];
 
-  let concatenatedString = randomWho + " " + randomAction + " " + randomWhat + " " + randomWhen;
-  
-  return concatenatedString;
+  return { palo: paloAleatorio, valor: valorAleatorio };
 }
 
-window.onload = function() {
-  let excuse = generateExcuse();
-  document.querySelector("#excuse").innerHTML = excuse;
-};
+function generarCarta() {
+  const cartaAleatoria = obtenerCartaAleatoria();
+  const cartaElement = document.getElementById("cartaAleatoria");
+  cartaElement.innerHTML = `
+        <div class="esquina-superior-izquierda">${cartaAleatoria.palo}</div>
+        <div class="numero">${cartaAleatoria.valor}</div>
+        <div class="esquina-inferior-derecha">${cartaAleatoria.palo}</div>
+    `;
+}
+
+generarCarta();
